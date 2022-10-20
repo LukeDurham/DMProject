@@ -1,4 +1,4 @@
-"""Django URL Configuration
+"""authentication URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -14,13 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
-from .import views
+admin.autodiscover()
+from django.urls import path, include
 
 urlpatterns = [
-    re_path(r'^about/$', views.about, name='about-view'),
-    re_path(r'^$', views.homepage, name ='homepage-view'),
-    re_path(r'^signup/$', views.signup, name='signup-view'),
-    re_path(r'^signin/$', views.signin, name='signin-view'),
-    re_path(r'^signout/$', views.signout, name='signout-view'),
+    path('admin', admin.site.urls),
+    path('', include('authentication.urls'))
 ]
