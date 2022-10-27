@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+  <h1>Cars</h1>
+<table border="1">
+  {% for car in cars %}
+  <tr>
+    <td>{{ car.CarID }}</td>
+      <td>{{ car.year }}</td>
+      <td>{{ car.make }}</td>
+      <td>{{ car.model }}</td>
+      <td>{{ car.miles }}</td>
+      <td>{{ car.color }}</td>
+      <td>{{ car.location }}</td>
+      <td>{{ car.status }}</td>
+  {% endfor %}
+    <button type="submit"><a href=/addcar>Add Car</a></button>
+    <button type="submit"><a href=/>home</a></button>
+
+  </tr>
+</table>
+
+</body>
+</html>
