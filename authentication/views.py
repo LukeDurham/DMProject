@@ -1,5 +1,8 @@
+import datetime
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.sites.shortcuts import get_current_site
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
@@ -147,11 +150,12 @@ def addcar(request):
         col = request.POST['color']
         loc = request.POST['location']
         stat = request.POST['status']
+        da = datetime.datetime.now()
         # amountInvested = 2000
         # statusChangedBy = 'Luke'
 
         v1 = Vehicle.objects.create(CarID=cid, year=y, make=m, model=mod, miles=mil, color=col,
-                                    location=loc, status=stat
+                                    location=loc, status=stat, DateAdded=da,
                                     )
         v1.save()
 
@@ -180,4 +184,19 @@ def removecar(request):
 
 def showdb(request):
     cars = Vehicle.objects.all().values()
+    # context= {'sortedCarID': cars_sorted}
     return render(request, 'showdb.html', {'cars': cars})
+
+def about(request):
+    return render(request, 'about.html')
+
+def Search_Cars(request):
+    if request.method == 'POST':
+     searched = request.POST['searched']
+     cars = Vehicle.objects.filter( Q(CarID__contains= searched) or Q(Model__contains= searched) or Q(Location__contains= searched) or Q(Make__contains= searched) or Q(Color__contains= searched))
+     return render (request, 'searchCars.html')
+    else:
+     return render (request, 'search.html')
+
+def search(request):
+    return render(request, 'search.html')

@@ -41,6 +41,7 @@ class Vehicle(models.Model):
     color = models.CharField(max_length=30)
     location = models.CharField(max_length=50)
     status = models.CharField(max_length=1, choices=statusOptions)
+    DateAdded = models.DateField()
 class Meta:
     app_label = 'user_app'
 

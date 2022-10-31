@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>homepage</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
    {% for message in messages %}
@@ -14,7 +16,7 @@
         </div>
         {% endfor %}
 
-    <h3>Welcome to our DMProject</h3>
+    <h3 class="welcome">Welcome to our DMProject</h3>
 
     {% if user.is_authenticated %}
     <h3>Hello {{ firstname}}</h3>
@@ -28,6 +30,7 @@
     {% else %}
     <button type="submit"><a href="/signup">SignUp</a></button>
     <button type="submit"><a href="/signin">SignIn</a></button>
+    <button type="submit"><a href="/about">About</a></button>
     {% endif %}
 
 
