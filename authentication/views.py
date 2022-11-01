@@ -191,12 +191,12 @@ def about(request):
     return render(request, 'about.html')
 
 def Search_Cars(request):
-    if request.method == 'POST':
-     searched = request.POST['searched']
-     cars = Vehicle.objects.filter( Q(CarID__contains= searched) or Q(Model__contains= searched) or Q(Location__contains= searched) or Q(Make__contains= searched) or Q(Color__contains= searched))
-     return render (request, 'searchCars.html')
+    if request.method == 'POST' and 'searched' in request.POST:
+        searched = request.GET[request]
+        cars = Vehicle.objects.filter( Q(CarID= searched) | Q(year=searched) | Q(make=searched) | Q(model = searched) | Q(miles= searched) |
+                                       Q(color= searched)| Q(location= searched) | Q(status= searched) | Q(DateAdded=0))
+        return render (request, 'searchCars.html', {'cars': cars})
     else:
-     return render (request, 'search.html')
+        cars = Vehicle.objects.all()
+        return render (request, 'searchCars.html', {'cars': cars})
 
-def search(request):
-    return render(request, 'search.html')

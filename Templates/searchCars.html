@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<center>
+  <h1>Cars</h1>
+<form action="/searchCars" method="POST">
+  <input class="form-control me-2" type="searchCars" placeholder="searchCars" aria-label="Search_Cars" name="searched">
+  <button type="submit"><a href=/searchCars.html>Search</a></button>
+</form>
+<table border="1">
+  {% for car in cars %}
+  <tr>
+    <td>{{ car.CarID }}</td>
+      <td>{{ car.year }}</td>
+      <td>{{ car.make }}</td>
+      <td>{{ car.model }}</td>
+      <td>{{ car.miles }}</td>
+      <td>{{ car.color }}</td>
+      <td>{{ car.location }}</td>
+      <td>{{ car.status }}</td>
+      <td>{{ car.DateAdded }}</td>
+      <td><a href="sort/{{ car.DateAdded }}">Sort</a></td>
+  {% endfor %}
+
+
+  </tr>
+</table>
+
+  <button type="submit"><a href=/>home</a></button>
+</center>
+</body>
+</html>
