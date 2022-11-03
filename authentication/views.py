@@ -190,13 +190,13 @@ def showdb(request):
 def about(request):
     return render(request, 'about.html')
 
-def search_Cars(request):
-    cars = Vehicle.objects.all()
-    if request.method == "POST":
-        searched = request.POST['searched']
-        cars=Vehicle.objects.filter(year__contains = searched)
-
-        return render(request, 'searchCars.html', {'searched': searched, 'cars':cars})
+#def search_Cars(request):
+#    cars = Vehicle.objects.all()
+#    if request.method == "POST":
+#        searched = request.POST['searched']
+#        cars=Vehicle.objects.filter(year__contains = searched)
+#
+#        return render(request, 'searchCars.html', {'searched': searched, 'cars':cars})
     # if 'searched' in request.GET:
     #     searched = request.GET['searched']
     #     cars = Vehicle.objects.filter( Q(CarID__icontains = searched) | Q(year__icontains =searched) | Q(make__icontains =searched) | Q(model__icontains  = searched) | Q(miles__icontains = searched) |
@@ -205,8 +205,17 @@ def search_Cars(request):
     # else:
     #     cars = Vehicle.objects.all()
     #     context = {"cars": cars}
+#    else:
+#        return render(request, 'searchCars.html')
+
+def search_Cars(request):
+    cars = Vehicle.objects.all()
+    if request.method == "GET":
+        searched = request.GET['searched']
+        cars = Vehicle.objects.filter( Q(CarID__icontains = searched) | Q(year__icontains =searched) | Q(make__icontains =searched) | Q(model__icontains  = searched) | Q(miles__icontains = searched) | Q(color__icontains = searched)| Q(location__icontains = searched) | Q(status__icontains = searched))
+        return render(request, 'searchCars.html', {'searched': searched, 'cars': cars})
     else:
         return render(request, 'searchCars.html')
-
+V
 
 
