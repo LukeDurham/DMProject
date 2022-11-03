@@ -22,7 +22,7 @@
       <td>{ car.DateAdded }}</td>
       <td><a href="sort/{{ car.DateAdded }}">Sort</a></td>
   {% endfor %}
-<form class ="d-flex" method="POST" action="/searchCars/">
+<form class ="d-flex" method="GET" action="/searchCars/">
   {% csrf_token %}
   <input class="form-control me-2" type="search" placeholder="Search Cars" aria-label="Search" name="searched">
   <button type="submit">Search</a></button>

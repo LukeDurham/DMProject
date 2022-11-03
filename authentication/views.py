@@ -216,6 +216,5 @@ def search_Cars(request):
         return render(request, 'searchCars.html', {'searched': searched, 'cars': cars})
     else:
         return render(request, 'searchCars.html')
-V
 
 
