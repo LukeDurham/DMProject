@@ -11,9 +11,9 @@ urlpatterns = [
     path(r'signout/', views.signout, name='signout'),
     path('admin/', admin.site.urls),
     path(r'addcar/', views.addcar, name='addcar'),
-    path(r'removecar/', views.removecar, name='removecar'),
+    path('removecar/', views.removecar, name='removecar'),
     path(r'showdb/', views.showdb, name='showdb'),
     path('about/', views.about, name='about'),
-    path(r'searchCars/', views.Search_Cars, name='searchCars'),
+    path(r'searchCars/', views.search_Cars, name='searchCars'),
 
 ]

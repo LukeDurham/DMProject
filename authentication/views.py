@@ -190,14 +190,23 @@ def showdb(request):
 def about(request):
     return render(request, 'about.html')
 
-def Search_Cars(request):
+def search_Cars(request):
     cars = Vehicle.objects.all()
-    if 'searched' in request.GET:
-        searched = request.GET['searched']
-        cars = Vehicle.objects.filter( Q(CarID__icontains = searched) | Q(year__icontains =searched) | Q(make__icontains =searched) | Q(model__icontains  = searched) | Q(miles__icontains = searched) |
-                                       Q(color__icontains = searched)| Q(location__icontains = searched) | Q(status__icontains = searched) | Q(DateAdded__icontains =0))
-        return render (request, 'searchCars.html', {'cars': cars})
+    if request.method == "POST":
+        searched = request.POST['searched']
+        cars=Vehicle.objects.filter(year__contains = searched)
+
+        return render(request, 'searchCars.html', {'searched': searched, 'cars':cars})
+    # if 'searched' in request.GET:
+    #     searched = request.GET['searched']
+    #     cars = Vehicle.objects.filter( Q(CarID__icontains = searched) | Q(year__icontains =searched) | Q(make__icontains =searched) | Q(model__icontains  = searched) | Q(miles__icontains = searched) |
+    #                                    Q(color__icontains = searched)| Q(location__icontains = searched) | Q(status__icontains = searched) | Q(DateAdded__icontains =0))
+    #     context = {"cars": cars}
+    # else:
+    #     cars = Vehicle.objects.all()
+    #     context = {"cars": cars}
     else:
-        cars = Vehicle.objects.all()
-        return render (request, 'searchCars.html', {'cars': cars})
+        return render(request, 'searchCars.html')
+
+
 

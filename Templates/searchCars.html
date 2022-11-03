@@ -7,25 +7,41 @@
 </head>
 <body>
 <center>
-  <h1>Cars</h1>
-<form action="/searchCars" method="GET">
-  <input class="form-control me-2" type="searchCars" placeholder="searchCars" aria-label="Search_Cars" name="searched">
-  <button type="submit"><a href=/searchCars.html>Search</a></button>
-</form>
+  <h1>You searched for...</h1>
+    {% if searched %}
+        <h1>You searched for {{ searched }}</h1>
+
+        <br/>
+    <table border="1">
+        {% for car in cars %}
+            <td>{{ car.CarID }}</td>
+            <td>{{ car.year }}</td>
+            <td>{{ car.make }}</td>
+            <td>{{ car.model }}</td>
+            <td>{{ car.miles }}</td>
+            <td>{{ car.status }}</td>
+
+        {% endfor %}
+    <table/>
+    {% else %}
+        <h1>You didn't search for a vehicle.</h1>
+    {% endif %}
+
 <table border="1">
-  {% for car in cars %}
-  <tr>
-    <td>{{ car.CarID }}</td>
-      <td>{{ car.year }}</td>
-      <td>{{ car.make }}</td>
-      <td>{{ car.model }}</td>
-      <td>{{ car.miles }}</td>
-      <td>{{ car.color }}</td>
-      <td>{{ car.location }}</td>
-      <td>{{ car.status }}</td>
-      <td>{{ car.DateAdded }}</td>
-      <td><a href="sort/{{ car.DateAdded }}">Sort</a></td>
-  {% endfor %}
+<!--  {% for car in cars %}-->
+<!--  <tr>-->
+<!--    <td>{{ car.CarID }}</td>-->
+<!--      <td>{{ car.year }}</td>-->
+<!--      <td>{{ car.make }}</td>-->
+<!--      <td>{{ car.model }}</td>-->
+<!--      <td>{{ car.miles }}</td>-->
+<!--      <td>{{ car.color }}</td>-->
+<!--      <td>{{ car.location }}</td>-->
+<!--      <td>{{ car.status }}</td>-->
+<!--      <td>{{ car.DateAdded }}</td>-->
+<!--      <td><a href="sort/{{ car.DateAdded }}">Sort</a></td>-->
+<!--  {% endfor %}-->
+
 
 
   </tr>
