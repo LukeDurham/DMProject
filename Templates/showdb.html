@@ -8,21 +8,24 @@
 <body>
 
   <h1>Cars</h1>
-<table border="1">
+<table class="table table-striped table-hover table-bordered">
   {% for car in cars %}
   <tr>
     <td>{{ car.CarID }}</td>
-      <td>{{ car.year }}</td>
-      <td>{{ car.make }}</td>
-      <td>{{ car.model }}</td>
-      <td>{{ car.miles }}</td>
-      <td>{{ car.color }}</td>
-      <td>{{ car.location }}</td>
-      <td>{{ car.status }}</td>
-      <td>{ car.DateAdded }}</td>
-      <td><a href="sort/{{ car.DateAdded }}">Sort</a></td>
+    <td>{{ car.year }}</td>
+    <td>{{ car.make }}</td>
+    <td>{{ car.model }}</td>
+    <td>{{ car.miles }}</td>
+    <td>{{ car.color }}</td>
+    <td>{{ car.location }}</td>
+    <td>{{ car.status }}</td>
+    <td>{{ car.DateAdded }}</td>
+    <td align="right">
+      <a href="/update_cars" car_id>Update</a>
+    </td>
   {% endfor %}
-<form class ="d-flex" method="POST" action="/searchCars/">
+    <form class ="d-flex" method="GET" action="/searchCars/">
+<!--<form class ="d-flex" method="POST" action="/searchCars/">-->
   {% csrf_token %}
   <input class="form-control me-2" type="search" placeholder="Search Cars" aria-label="Search" name="searched">
   <button type="submit">Search</a></button>

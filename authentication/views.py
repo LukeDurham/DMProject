@@ -3,7 +3,7 @@ import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.sites.shortcuts import get_current_site
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -13,7 +13,9 @@ from django.utils.encoding import force_bytes, force_text
 from .tokens import generate_token
 from DMwebsite import settings
 from .models import Vehicle
+
 from django.core.mail import send_mail, EmailMessage
+from .forms import VehicleForm
 
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -140,26 +142,50 @@ def activate(request, uidb64, token):
         return render(request, 'activation_failed.html')
 
 
-def addcar(request):
-    if request.method == "POST":
-        cid = request.POST['CarID']
-        y = request.POST['year']
-        m = request.POST['make']
-        mod = request.POST['model']
-        mil = request.POST['miles']
-        col = request.POST['color']
-        loc = request.POST['location']
-        stat = request.POST['status']
-        da = datetime.datetime.now()
-        # amountInvested = 2000
-        # statusChangedBy = 'Luke'
+def add_car(request):
+    submitted = False
+    if request.method =="POST":
+        form = VehicleForm(request.POST)
+        if form.is_valid():
+            Cid = form.cleaned_data['CarID']
+            y = form.cleaned_data['year']
+            m = form.cleaned_data['make']
+            mod = form.cleaned_data['model']
+            mil = form.cleaned_data['miles']
+            col = form.cleaned_data['color']
+            loc = form.cleaned_data['location']
+            stat = form.cleaned_data['status']
+            DA = datetime.datetime.now()
+            v = Vehicle(CarID=Cid, year=y, make=m, model=mod, miles=mil,
+                        color=col, location=loc, status=stat, DateAdded=DA)
+            v.save()
 
-        v1 = Vehicle.objects.create(CarID=cid, year=y, make=m, model=mod, miles=mil, color=col,
-                                    location=loc, status=stat, DateAdded=da,
-                                    )
-        v1.save()
 
-    return render(request, 'addcar.html')
+            return HttpResponseRedirect('/add_car?submitted=True')
+    else:
+        form = VehicleForm
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'add_car.html', {'form':form, 'submitted':submitted})
+    # if request.method == "POST":
+    #     cid = request.POST['CarID']
+    #     y = request.POST['year']
+    #     m = request.POST['make']
+    #     mod = request.POST['model']
+    #     mil = request.POST['miles']
+    #     col = request.POST['color']
+    #     loc = request.POST['location']
+    #     stat = request.POST['status']
+    #     da = datetime.datetime.now()
+    #     # amountInvested = 2000
+    #     # statusChangedBy = 'Luke'
+    #
+    #     v1 = Vehicle.objects.create(CarID=cid, year=y, make=m, model=mod, miles=mil, color=col,
+    #                                 location=loc, status=stat, DateAdded=da,
+    #                                 )
+    #     v1.save()
+
+
 
 
 def removecar(request):
@@ -190,23 +216,36 @@ def showdb(request):
 def about(request):
     return render(request, 'about.html')
 
+# def search_Cars(request):
+#     cars = Vehicle.objects.all()
+#     if request.method == "POST":
+#         searched = request.POST['searched']
+#         cars=Vehicle.objects.filter(year__contains = searched)
+#
+#         return render(request, 'searchCars.html', {'searched': searched, 'cars':cars})
+#     # if 'searched' in request.GET:
+#     #     searched = request.GET['searched']
+#     #     cars = Vehicle.objects.filter( Q(CarID__icontains = searched) | Q(year__icontains =searched) | Q(make__icontains =searched) | Q(model__icontains  = searched) | Q(miles__icontains = searched) |
+#     #                                    Q(color__icontains = searched)| Q(location__icontains = searched) | Q(status__icontains = searched) | Q(DateAdded__icontains =0))
+#     #     context = {"cars": cars}
+#     # else:
+#     #     cars = Vehicle.objects.all()
+#     #     context = {"cars": cars}
+#     else:
+#         return render(request, 'searchCars.html')
 def search_Cars(request):
     cars = Vehicle.objects.all()
-    if request.method == "POST":
-        searched = request.POST['searched']
-        cars=Vehicle.objects.filter(year__contains = searched)
-
-        return render(request, 'searchCars.html', {'searched': searched, 'cars':cars})
-    # if 'searched' in request.GET:
-    #     searched = request.GET['searched']
-    #     cars = Vehicle.objects.filter( Q(CarID__icontains = searched) | Q(year__icontains =searched) | Q(make__icontains =searched) | Q(model__icontains  = searched) | Q(miles__icontains = searched) |
-    #                                    Q(color__icontains = searched)| Q(location__icontains = searched) | Q(status__icontains = searched) | Q(DateAdded__icontains =0))
-    #     context = {"cars": cars}
-    # else:
-    #     cars = Vehicle.objects.all()
-    #     context = {"cars": cars}
+    if request.method == "GET":
+        searched = request.GET['searched']
+        cars = Vehicle.objects.filter( Q(CarID__icontains = searched) | Q(year__icontains =searched) | Q(make__icontains =searched) | Q(model__icontains  = searched) | Q(miles__icontains = searched) | Q(color__icontains = searched)| Q(location__icontains = searched) | Q(status__icontains = searched))
+        return render(request, 'searchCars.html', {'searched': searched, 'cars': cars})
     else:
         return render(request, 'searchCars.html')
 
 
+def update_cars(request, car_id):
+    car = Vehicle.objects.get(pk=car_id)
+    form = VehicleForm(request.POST or None)
+    return render(request, 'update_cars.html', {'car': car, 'form':form})
 
+    return None
