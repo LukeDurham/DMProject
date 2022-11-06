@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylesecondary.css' %}">
 </head>
 <body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">DMProject</label>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/feedback">Feedback</a></li>
+        </ul>
+    </nav>
 <center>
     <h1>Add Vehicle to Database</h1>
     <br/><br/>
@@ -18,7 +34,7 @@
         </form>
     {% endif %}
 
-        <button type="submit"><a href=/>home</a></button>
+
     <script src="" async defer></script>
 </center>
 
