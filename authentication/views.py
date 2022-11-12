@@ -167,25 +167,6 @@ def add_car(request):
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'add_car.html', {'form':form, 'submitted':submitted})
-    # if request.method == "POST":
-    #     cid = request.POST['CarID']
-    #     y = request.POST['year']
-    #     m = request.POST['make']
-    #     mod = request.POST['model']
-    #     mil = request.POST['miles']
-    #     col = request.POST['color']
-    #     loc = request.POST['location']
-    #     stat = request.POST['status']
-    #     da = datetime.datetime.now()
-    #     # amountInvested = 2000
-    #     # statusChangedBy = 'Luke'
-    #
-    #     v1 = Vehicle.objects.create(CarID=cid, year=y, make=m, model=mod, miles=mil, color=col,
-    #                                 location=loc, status=stat, DateAdded=da,
-    #                                 )
-    #     v1.save()
-
-
 
 
 def removecar(request):
@@ -243,9 +224,10 @@ def search_Cars(request):
         return render(request, 'searchCars.html')
 
 
-def update_cars(request, car_id):
-    car = Vehicle.objects.get(pk=car_id)
-    form = VehicleForm(request.POST or None)
+def update_cars(request, CarID):
+    car = Vehicle.objects.get(pk=CarID)
+    form = VehicleForm(request.POST or None, instance=car)
+    if form.is_valid():
+        form.save()
+        return redirect('showdb')
     return render(request, 'update_cars.html', {'car': car, 'form':form})
-
-    return None
