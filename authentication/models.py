@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 import datetime
 
+currentyear = datetime.datetime.now().year + 1
 class Meta:
 
     app_label = 'yourApp'
@@ -34,13 +35,13 @@ class Vehicle(models.Model):
          ('S', 'Service')
      )
     CarID = models.CharField(max_length=12, primary_key=True)
-    year = models.CharField(max_length=4)
-    make = models.CharField(max_length=30)
-    model = models.CharField(max_length=255)
-    miles = models.CharField(max_length=7)
-    color = models.CharField(max_length=30)
-    location = models.CharField(max_length=50)
-    status = models.CharField(max_length=1, choices=statusOptions)
+    year = models.IntegerField(validators=[MinValueValidator(1930), MaxValueValidator(currentyear)])
+    make = models.CharField(max_length=30, null=False)
+    model = models.CharField(max_length=20, null=False)
+    miles = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(1500000)])
+    color = models.CharField(max_length=15)
+    location = models.CharField(max_length=30, null=False)
+    status = models.CharField(max_length=1, choices=statusOptions, null=False)
     DateAdded = models.DateField()
 class Meta:
     app_label = 'user_app'
