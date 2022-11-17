@@ -28,7 +28,7 @@
   {% for car in cars %}
     <tr>
         <td>
-            <a href="/update_cars">{{ car }}</a>
+            <a href="/update_cars/{{ car.CarID }}" class ="btn btn-outline-secondary btn-sm">{{ car }}</a>
         </td>
   {% endfor %}
     <form class ="d-flex" method="GET" action="/searchCars/">
