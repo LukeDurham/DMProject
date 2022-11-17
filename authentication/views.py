@@ -215,10 +215,10 @@ def about(request):
 #     else:
 #         return render(request, 'searchCars.html')
 def search_Cars(request):
-    cars = Vehicle.objects.all()
+    cars = Vehicle.objects.all().values()
     if request.method == "GET":
         searched = request.GET['searched']
-        cars = Vehicle.objects.filter( Q(CarID__icontains = searched) | Q(year__icontains =searched) | Q(make__icontains =searched) | Q(model__icontains  = searched) | Q(miles__icontains = searched) | Q(color__icontains = searched)| Q(location__icontains = searched) | Q(status__icontains = searched))
+        cars = Vehicle.objects.filter( Q(CarID__icontains = searched) | Q(year__icontains =searched) | Q(make__icontains =searched) | Q(model__icontains  = searched) | Q(miles__icontains = searched) | Q(color__icontains = searched)| Q(location__icontains = searched) | Q(status__icontains = searched)).values()
         return render(request, 'searchCars.html', {'searched': searched, 'cars': cars})
     else:
         return render(request, 'searchCars.html')
