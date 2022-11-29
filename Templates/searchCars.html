@@ -30,13 +30,23 @@
 
         <br/>
     <table border="1">
+        <tr>
+            <th>CarID</th>
+            <th>Year</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Miles</th>
+            <th>Status</th>
+        </tr>
         {% for car in cars %}
+        <tr>
             <td>{{ car.CarID }}</td>
             <td>{{ car.year }}</td>
             <td>{{ car.make }}</td>
             <td>{{ car.model }}</td>
             <td>{{ car.miles }}</td>
             <td>{{ car.status }}</td>
+        </tr>
 
         {% endfor %}
     <table/>

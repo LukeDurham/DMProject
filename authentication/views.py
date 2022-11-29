@@ -194,6 +194,10 @@ def showdb(request):
     # context= {'sortedCarID': cars_sorted}
     return render(request, 'showdb.html', {'cars': cars})
 
+def showusers(request):
+    users = User.objects.all().values()
+    return render(request, 'showusers.html', {'users': users})
+
 def about(request):
     return render(request, 'about.html')
 

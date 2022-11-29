@@ -30,9 +30,9 @@ class Users(models.Model):
 
 class Vehicle(models.Model):
     statusOptions = (
-         ('L', 'Lot'),
-         ('D', 'Detail'),
-         ('S', 'Service')
+         ('Lot', 'Lot'),
+         ('Detail', 'Detail'),
+         ('Service', 'Service')
      )
     CarID = models.CharField(max_length=12, primary_key=True)
     year = models.IntegerField(validators=[MinValueValidator(1930), MaxValueValidator(currentyear)])
@@ -41,7 +41,7 @@ class Vehicle(models.Model):
     miles = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(1500000)])
     color = models.CharField(max_length=15)
     location = models.CharField(max_length=30, null=False)
-    status = models.CharField(max_length=1, choices=statusOptions, null=False)
+    status = models.CharField(max_length=7, choices=statusOptions, null=False)
     DateAdded = models.DateField()
 class Meta:
     app_label = 'user_app'
