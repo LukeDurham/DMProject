@@ -117,7 +117,7 @@ def signin(request):
         else:
             messages.error(request, "Invalid username or password")
             return redirect('home')
-    return render(request, "authentication/signin.html")
+    # return render(request, "authentication/signin.html")
 
 
 def signout(request):
@@ -194,9 +194,9 @@ def showdb(request):
     # context= {'sortedCarID': cars_sorted}
     return render(request, 'showdb.html', {'cars': cars})
 
-def showusers(request):
-    users = User.objects.all().values()
-    return render(request, 'showusers.html', {'users': users})
+# def showusers(request):
+#     users = User.objects.all().values()
+#     return render(request, 'showusers.html', {'users': users})
 
 def about(request):
     return render(request, 'about.html')

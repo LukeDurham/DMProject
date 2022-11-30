@@ -7,21 +7,22 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <script src="https://kit.fontawesome.com/3120c939fa.js" crossorigin="anonymous"></script>
 </head>
-<!--style="background-image:url('{% static 'css/images/background1.jpeg' %}'); background-size: cover;background-repeat: no-repeat; height: calc(100vh - 80px);"-->
 <body>
     <nav>
         <input type="checkbox" id="check">
         <label for="check" class="checkbtn">
             <i class="fas fa-bars"></i>
         </label>
-        <label class="logo">DMProject</label>
+        <label class="logo">
+        <img class="img-responsive image-resize" src="{% static 'css/images/DMLogo.png' %}">
+
+        </label>
 
         <ul>
             <li><a class="active" href="">Home</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/signup">Signup</a></li>
             <li><a href="/signin">Login</a></li>
-            <li><a href="/contact">Contact</a></li>
             <li><a href="/feedback">Feedback</a></li>
         </ul>
     </nav>
@@ -30,14 +31,10 @@
     </section>
     <div class="sec">
         <h2>What is DMProject?</h2>
-        <p>We are a team of 4 SE students at MU. We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.
-            We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.
-            We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.
-        <br><br> We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.
-        We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.
-    <br><br>We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.
-    We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.
-    We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.We are a team of 4 SE students at MU.</p>
+        <p>We are a team of 4 SE students at MU. We have been given the task to help keep track of used vehicle inventory for local automotive dealership Dutchmiller.
+        <br><br>
+    <br><br>The primary function of this website is for employees to be able to track inventory at their stores location as well as for upper levels of management to be able to access and
+        find the vehicle from store to store.</p>
     </div>
     
    {% for message in messages %}
@@ -54,9 +51,10 @@
 
 
     {% if user.is_authenticated %}
+
     <div class="nav-secondary">
     <div class="success">
-    <h1>Hello {{ firstname}}</h1>
+    <h1>Hello {{ firstname }}</h1>
     <h4>You're successfully logged in.</h4>
     </div>
     <div class="container-2">
@@ -64,7 +62,7 @@
     <button class=btn-2 type="sumbit"><a href="/add_car">Add Vehicle</a></button>
     <button class=btn-2 type="sumbit"><a href="/removecar">Remove Vehicle</a></button>
     <button class=btn-2 type="sumbit"><a href="/showdb">Show Database</a></button>
-    <button class=btn-2 type="submit"><a href="/showusers">Show Users</a></button>
+    <button class=btn-2 type="submit"><a href="/admin/auth/user/">Show Users</a></button>
     </div>
     </div>
 

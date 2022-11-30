@@ -9,17 +9,19 @@ body{
     font-family: 'Times New Roman', Times, serif;
 } 
 nav{
-    background: #0082e6;
-    height: 80px;
+    background: white;
+    height: 100px;
     width: 100%;
 }
-label.logo{
+logo{
     color: white;
     font-size: 35px;
     line-height: 80px;
     padding: 0 100px;
     font-weight: bold;
+    height 100px;
 }
+
 nav ul{
     float: right;
     margin-right: 20px;
@@ -35,7 +37,7 @@ nav ul li a{
     text-transform: uppercase;
 }
 a.active,a:hover{
-    background: #1b9bff;
+    background: white;
     transition: .5s;
 
 
@@ -69,7 +71,7 @@ a.active,a:hover{
         position: fixed;
         width: 100%;
         height: 100vh;
-        background: #2c3e50;
+        background: white;
         top: 80px;
         left: -100;
         text-align: center;
@@ -85,19 +87,14 @@ a.active,a:hover{
     }
     a:hover,a.active{
         background: none;
-        color: #0082e6;
+        color: white;
     }
     #check:checked ~ ul{
         left: 0;
 
     }
 }
-section{
-    background: url(./dm1400x400.jpeg) no-repeat;
-    background-size: cover;
-    height: calc(100vh - 80px);
 
-}
 section::before{
     content: '';
     position: absolute;
@@ -121,7 +118,7 @@ h1{
 .sec{
     position: relative;
     padding: 100px;
-    background: #0a91df;
+    background: white;
 }
 .sec h2{
     font-size: 3.5em;
@@ -152,7 +149,7 @@ h1{
     border: none;
     color: white;
     border-radius: 4px;
-    background-color: #0082e6;
+    background-color: white;
     box-shadow: inset 0 0 0 0 #808080;
     transition: ease-out 0.3s;
     font-size: 1.5rem;

@@ -25,17 +25,10 @@
   <h1>Users</h1>
 <table class="table table-striped table-hover table-bordered">
 
-  {% for car in cars %}
+  {% for user in Users %}
     <tr>
-        <td>
-            <td>{{ car.CarID }}</td>
-            <td>{{ car.year }}</td>
-            <td>{{ car.make }}</td>
-            <td>{{ car.model }}</td>
-            <td>{{ car.miles }}</td>
-            <td>{{ car.status }}</td>
-            <td><button type="submit" class ="btn btn-secondary"><a href="/update_cars/{{ car.CarID }}" class ="btn btn-outline-secondary btn-sm">Update</a></button></td>
-        </td>
+        <td>{{ user }} </td>
+
 
   {% endfor %}
 
