@@ -37,6 +37,7 @@
             <th>Model</th>
             <th>Miles</th>
             <th>Status</th>
+            <th>Notes</th>
         </tr>
         {% for car in cars %}
         <tr>
@@ -46,6 +47,7 @@
             <td>{{ car.model }}</td>
             <td>{{ car.miles }}</td>
             <td>{{ car.status }}</td>
+            <td>{{ car.notes }}</td>
         </tr>
 
         {% endfor %}
