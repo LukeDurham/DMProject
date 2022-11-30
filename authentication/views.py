@@ -155,9 +155,10 @@ def add_car(request):
             col = form.cleaned_data['color']
             loc = form.cleaned_data['location']
             stat = form.cleaned_data['status']
+            note = form.cleaned_data['notes']
             DA = datetime.datetime.now()
             v = Vehicle(CarID=Cid, year=y, make=m, model=mod, miles=mil,
-                        color=col, location=loc, status=stat, DateAdded=DA)
+                        color=col, location=loc, status=stat, notes=note, DateAdded=DA)
             v.save()
 
 

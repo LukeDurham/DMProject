@@ -6,7 +6,7 @@ from .models import Vehicle
 class VehicleForm(ModelForm):
     class Meta:
         model = Vehicle
-        fields = ('CarID', 'year', 'make', 'model', 'miles', 'color', 'location', 'status')
+        fields = ('CarID', 'year', 'make', 'model', 'miles', 'color', 'location', 'status', 'notes')
         labels={
             'CarID': '',
             'year': '',
@@ -15,6 +15,7 @@ class VehicleForm(ModelForm):
             'miles': '',
             'color': '',
             'location': '',
+            'notes': '',
         }
 
         widgets={
@@ -25,4 +26,5 @@ class VehicleForm(ModelForm):
             'miles': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Miles'}),
             'color': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Color'}),
             'location': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Location'}),
+            'notes': forms.TextInput(attrs={'class':'form-control','placeholder':'Vehicle Notes'}),
         }

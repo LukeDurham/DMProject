@@ -35,13 +35,14 @@ class Vehicle(models.Model):
          ('Service', 'Service')
      )
     CarID = models.CharField(max_length=12, primary_key=True)
-    year = models.IntegerField(validators=[MinValueValidator(1930), MaxValueValidator(currentyear)])
+    year = models.IntegerField(validators=[MinValueValidator(1930), MaxValueValidator(currentyear)], blank=True, null=True)
     make = models.CharField(max_length=30, null=False)
     model = models.CharField(max_length=20, null=False)
-    miles = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(1500000)])
-    color = models.CharField(max_length=15)
+    miles = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(1500000)], blank=True, null=True)
+    color = models.CharField(max_length=15, blank=True, null=True)
     location = models.CharField(max_length=30, null=False)
     status = models.CharField(max_length=7, choices=statusOptions, null=False)
+    notes = models.CharField(max_length=256, blank=True, null=True)
     DateAdded = models.DateField()
 class Meta:
     app_label = 'user_app'
