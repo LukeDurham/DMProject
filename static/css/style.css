@@ -9,11 +9,11 @@ body{
     font-family: 'Times New Roman', Times, serif;
 } 
 nav{
-    background: white;
-    height: 100px;
+    background: #0082e6;
+    height: 80px;
     width: 100%;
 }
-logo{
+label.logo{
     color: white;
     font-size: 35px;
     line-height: 80px;
@@ -37,7 +37,7 @@ nav ul li a{
     text-transform: uppercase;
 }
 a.active,a:hover{
-    background: white;
+    background: #1b9bff;
     transition: .5s;
 
 
@@ -86,13 +86,19 @@ a.active,a:hover{
         font-size: 20px;
     }
     a:hover,a.active{
-        background: none;
+        background:  #2c3e50;
         color: white;
     }
     #check:checked ~ ul{
         left: 0;
 
     }
+}
+section{
+    background: url(./dm1400x400.jpeg) no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+
 }
 
 section::before{
@@ -118,7 +124,7 @@ h1{
 .sec{
     position: relative;
     padding: 100px;
-    background: white;
+    background: #0a91df;
 }
 .sec h2{
     font-size: 3.5em;
@@ -149,7 +155,7 @@ h1{
     border: none;
     color: white;
     border-radius: 4px;
-    background-color: white;
+    background-color: #0082e6;
     box-shadow: inset 0 0 0 0 #808080;
     transition: ease-out 0.3s;
     font-size: 1.5rem;

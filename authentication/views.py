@@ -117,7 +117,7 @@ def signin(request):
         else:
             messages.error(request, "Invalid username or password")
             return redirect('home')
-    # return render(request, "authentication/signin.html")
+    return render(request, "authentication/signin.html")
 
 
 def signout(request):
